@@ -1,4 +1,4 @@
-本项目用于文档问答，使用向量嵌入 + ES 做召回，使用Rerank模型作为精排，再使用LLM做文档问答，Web框架使用Flask。
+本项目用于RAG文档问答，使用langchain做文本的读取切分，embedding向量存储到milvus数据库，ES 做检索召回，使用Rerank模型(cohere/bge-rerank)作为精排，再使用LLM做文档问答。
 
 项目的整体架构如图：
 
