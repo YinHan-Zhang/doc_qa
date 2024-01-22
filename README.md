@@ -1,4 +1,8 @@
-本项目用于RAG文档问答，使用langchain做文本的读取切分，embedding向量存储到milvus数据库，ES 做检索召回，使用Rerank模型(cohere/bge-rerank)作为精排，再使用LLM做文档问答。
+本项目用于RAG文档问答，使用langchain做文本的读取切分，embedding向量存储到milvus数据库，ES 做检索召回，使用Rerank模型(cohere/bge-rerank)作为精排，再使用LLM做文档问答(glm4支持agent和tools的调用)。
+
+- 现在全部是调用api，方便部署体验
+Todo：本地LLM问答
+- 由于个人无显卡计算资源，现在只跑了Qwen-1.8b（后续待更新）
 
 项目的整体架构如图：
 
