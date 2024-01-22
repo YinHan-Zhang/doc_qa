@@ -4,16 +4,12 @@
 
 ![文档问答流程图](https://percent4.github.io/img/nlp60_5.jpeg)
 
-本项目对应的博客文章：
-
-- [NLP（六十一）使用Baichuan-13B-Chat模型构建智能文档](https://mp.weixin.qq.com/s?__biz=MzU2NTYyMDk5MQ==&mid=2247485425&idx=1&sn=bd85ddfce82d77ceec5a66cb96835400&chksm=fcb9be61cbce37773109f9703c2b6c4256d5037c8bf4497dfb9ad0f296ce0ee4065255954c1c&token=28280910&lang=zh_CN#rd)
-- [NLP（六十九）智能文档助手升级](https://mp.weixin.qq.com/s?__biz=MzU2NTYyMDk5MQ==&mid=2247485609&idx=1&sn=f8337b4822b1cdf95a586af6097ef288&chksm=fcb9b139cbce382f735e4c119ade8084067cde0482910c72767f36a29e7291385cbe6dfbd6a9&payreadticket=HJFJOt_DfmG3B-dmlm1HgcVHJP-S_fXfPwCpOqO05uqaij4NU-vn7HEWnzwgujoFA7BiQh8#rd)
 
 ### 启动方式
 
-1. 安装ElasticSearch（版本7.17.0），建议使用Docker搭建环境，参考文件：docs/docker-compose-es.yml， 具体配置方法参考：[https://github.com/percent4/ES_Learning](https://github.com/percent4/ES_Learning)
-2. 安装Milvus（版本2.2.1），建议使用Docker搭建环境，参考文件：docs/docker-compose-milvus.yml
-3. 安装Python第三方模块，参考`requirements.txt`
+1. 安装ElasticSearch，建议使用Docker搭建环境，``` docker-composed -f docs/docker-compose-es.yml up -d```
+2. 安装Milvus（版本2.2.1），建议使用Docker搭建环境, ``` docker-composed -f docs/docker-compose-milvus.yml up -d```
+3. 安装Python第三方模块，```pip install -r requirements.txt```
 4. 启动web服务: `python3 server.py`
 5. 可视化web页面启动: server_gradio.py`
 
@@ -46,6 +42,7 @@ Embedding模型:
 
 - [x] Baichuan-13B-Chat
 - [x] text-embedding-ada-002
+- [x] glm-4-embeding-2 
 
 大模型（LLM）:
 
@@ -53,6 +50,7 @@ Embedding模型:
 - [x] LLAMA-2-Chinese-13b-Chat
 - [x] internlm-chat-7b
 - [x] ChatGPT model: GPT-3.5, GPT-4
+- [ ] ChatGLM4
 
 ### 功能特性
 
@@ -74,31 +72,6 @@ Embedding模型:
 - [x] 使用GPT-4进行模型评估（指标：CORRECTNESS）
 - [x] 数据分析可视化
 
-### 数据分析可视化
-
-文件类型，共五种：
-
-- txt: txt文件
-- docx: docx文件
-- pdf: pdf文件
-- url: 用户输入的网址
-- string: 用户自定义输入
-
-在Kibana中使用可视化功能进行数据分析，首先统计每种文件类型的chunk（对文本内容进行划分，每个单位记为一个chunk）数据表格及柱状图、饼图：
-
-![每种文件类型的chunk数据表格](https://s2.loli.net/2023/12/21/gSIFsClVfYJjch6.png)
-
-![每种文件类型的chunk柱状图](https://s2.loli.net/2023/12/21/cXIglSrNWubDQwn.png)
-
-![每种文件类型的chunk饼图](https://s2.loli.net/2023/12/21/kTY2mP6vcr5DKax.png)
-
-每个文件类型的文件数量（使用source.keyword字段进行统计）：
-
-![每个文件类型的文件数量](https://s2.loli.net/2023/12/21/fyQgkeG52AIx4W9.png)
-
-文件插入时间与chunk数量的折线图（可用于记录不同时间段，插入的chunk数量统计）：
-
-![文件插入时间与chunk数量的折线图](https://s2.loli.net/2023/12/21/d9IJatvEYi7P38W.png)
 
 ### 效果测试
 
