@@ -11,11 +11,11 @@
 
 ### 启动方式
 
-1. 安装ElasticSearch（版本7.17.0），建议使用Docker搭建环境，```docker-compose -f docs/docker-compose-es.yml up -d```
-2. 安装Milvus（版本2.2.1），建议使用Docker搭建环境，```docker-compose -f docs/docker-compose-milvus.yml up -d```
-3. 安装Python第三方模块，参考`pip install -r requirements.txt`
+1. 安装ElasticSearch（版本7.17.0），建议使用Docker搭建环境，参考文件：docs/docker-compose-es.yml， 具体配置方法参考：[https://github.com/percent4/ES_Learning](https://github.com/percent4/ES_Learning)
+2. 安装Milvus（版本2.2.1），建议使用Docker搭建环境，参考文件：docs/docker-compose-milvus.yml
+3. 安装Python第三方模块，参考`requirements.txt`
 4. 启动web服务: `python3 server.py`
-5. 可视化web页面启动: `python server_gradio.py`
+5. 可视化web页面启动: server_gradio.py`
 
 ### HTTP请求
 
