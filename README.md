@@ -12,8 +12,8 @@
 
 ### 启动方式
 
-1. 安装ElasticSearch，建议使用Docker搭建环境，``` docker-composed -f docs/docker-compose-es.yml up -d```
-2. 安装Milvus（版本2.2.1），建议使用Docker搭建环境, ``` docker-composed -f docs/docker-compose-milvus.yml up -d```
+1. 安装ElasticSearch，建议使用Docker搭建环境，``` docker-compose -f docs/docker-compose-es.yml up -d```
+2. 安装Milvus（版本2.2.1），建议使用Docker搭建环境, ``` docker-compose -f docs/docker-compose-milvus.yml up -d```
 3. 安装Python第三方模块，```pip install -r requirements.txt```
 4. 初始化db: `python3 utils/db_inital.py`
 5. 插入数据：`python3 data_processor.py`
