@@ -42,7 +42,7 @@ EMBEDDING_MODEL = "embedding-2"
 EMBEDDING_API = models.get("embedding_api", "")
 CHAT_COMPLETION_API = models.get("chat_completion_api", "")
 
-ZHIPU_API_KEY = "90a8b0d5ca5a79b6a851efaa2e162790.yYu8gHh8QOH0SqCF"
+ZHIPU_API_KEY = "0c83ca3b5d7d11e6b842e37aa78f37ac.fcyvZfJ9WUop0A3u"
 OPENAI_KEY = os.getenv("OPENAI_API_KEY", "")
 ZHIPU_EMBEDDING_API = ""
 OPENAI_EMBEDDING_API = models.get("openai_embedding_api", "")

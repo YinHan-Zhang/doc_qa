@@ -4,7 +4,7 @@
 # @time: 2023/7/22 14:06
 import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
-import cohere
+# import cohere
 import sys
 sys.path.append("/Users/zhangyinhan1/Desktop/code/rag_project/llm_4_doc_qa")
 from utils.db_client import es_client, milvus_client
@@ -14,7 +14,7 @@ from utils.logger import logger
 from config.config_parser import MILVUS_SIZE, ES_SIZE, MILVUS_THRESHOLD, EMBEDDING_MODEL, COHERE_API_KEY, RERANK_TOP_N
 
 
-# ÎÄµµÎÊ´ğ
+# æ–‡æ¡£é—®ç­”
 class DocQA(object):
     def __init__(self, query):
         self.query = query
@@ -22,7 +22,7 @@ class DocQA(object):
     def get_milvus_search_result(self):
         # milvus search content
         vectors_to_search = [get_text_embedding(self.query, EMBEDDING_MODEL)]
-        # Í¨¹ıÇ¶ÈëÏòÁ¿ÏàËÆ¶È»ñÈ¡ÏàËÆÎÄ±¾
+        # é€šè¿‡åµŒå…¥å‘é‡ç›¸ä¼¼åº¦è·å–ç›¸ä¼¼æ–‡æœ¬
         search_params = {
             "metric_type": "IP",
             "params": {"nprobe": 10},
@@ -37,7 +37,7 @@ class DocQA(object):
 
     def get_es_search_result(self):
         result = []
-        # ²éÑ¯Êı¾İ(È«ÎÄËÑË÷)
+        # æŸ¥è¯¢æ•°æ®(å…¨æ–‡æœç´¢)
         dsl = {
             'query': {
                 'match': {
@@ -53,7 +53,7 @@ class DocQA(object):
 
     def get_context(self):
         contents = []
-        # È¥ÖØ
+        # å»é‡
         milvus_search_result = self.get_milvus_search_result()
         es_search_result = self.get_es_search_result()
         for content_source_tuple in milvus_search_result + es_search_result:
@@ -82,9 +82,9 @@ class DocQA(object):
         
 
     def get_qa_prompt(self):
-        # ½¨Á¢prompt
-        prefix = "<ÎÄ±¾Æ¬¶Î>:\n\n"
-        suffix = f"\n<ÎÊÌâ>: {self.query}\n<»Ø´ğ>: "
+        # å»ºç«‹prompt
+        prefix = "<æ–‡æœ¬ç‰‡æ®µ>:\n\n"
+        suffix = f"\n<é—®é¢˜>: {self.query}\n<å›ç­”>: "
         prompt = []
         contexts = []
         sources = []
@@ -107,10 +107,11 @@ class DocQA(object):
 if __name__ == '__main__':
     # test_model_name = "Baichuan-13B-Chat"
     test_model_name = "glm-4"
-    question = 'ÃÀ¹úÈËÊ²Ã´Ê±ºòµÇÉÏÔÂÇòµÄ£¿'
-    # question = 'Æİ·¢éíµÄÖ°ÎñÊÇÊ²Ã´£¿'
-    # question = 'ÄãÖªµÀ¸ñÀï·ÒµÄÖ°ÎñÂğ£¿'
-    # question = '¸ñÀï·Ò·¢±íÑİËµÊ±½²ÁËÊ²Ã´£¿'
-    # question = 'ÈÕ±¾µÄÃæ»ıÓĞ¶à´ó£¿'
+    question = 'ç¾å›½äººä»€ä¹ˆæ—¶å€™ç™»ä¸Šæœˆçƒçš„ï¼Ÿ'
+    # question = 'æˆšå‘è½«çš„èŒåŠ¡æ˜¯ä»€ä¹ˆï¼Ÿ'
+    # question = 'ä½ çŸ¥é“æ ¼é‡ŒèŠ¬çš„èŒåŠ¡å—ï¼Ÿ'
+    # question = 'æ ¼é‡ŒèŠ¬å‘è¡¨æ¼”è¯´æ—¶è®²äº†ä»€ä¹ˆï¼Ÿ'
+    # question = 'æ—¥æœ¬çš„é¢ç§¯æœ‰å¤šå¤§ï¼Ÿ'
     reply = DocQA(question).answer(model_name=test_model_name)
     print(reply)
+

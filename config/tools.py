@@ -3,48 +3,48 @@ tools = [
         "type": "function",
         "function": {
             "name": "query_train_info",
-            "description": "¸ù¾İÓÃ»§Ìá¹©µÄĞÅÏ¢£¬²éÑ¯¶ÔÓ¦µÄ³µ´Î",
+            "description": "æ ¹æ®ç”¨æˆ·æä¾›çš„ä¿¡æ¯ï¼ŒæŸ¥è¯¢å¯¹åº”çš„è½¦æ¬¡",
             "parameters": {
                 "type": "object",
                 "properties": {
                     "departure": {
                         "type": "string",
-                        "description": "³ö·¢³ÇÊĞ»ò³µÕ¾",
+                        "description": "å‡ºå‘åŸå¸‚æˆ–è½¦ç«™",
                     },
                     "destination": {
                         "type": "string",
-                        "description": "Ä¿µÄµØ³ÇÊĞ»ò³µÕ¾",
+                        "description": "ç›®çš„åœ°åŸå¸‚æˆ–è½¦ç«™",
                     },
                     "date": {
                         "type": "string",
-                        "description": "Òª²éÑ¯µÄ³µ´ÎÈÕÆÚ",
+                        "description": "è¦æŸ¥è¯¢çš„è½¦æ¬¡æ—¥æœŸ",
                     },
                 },
                 "required": ["departure", "destination", "date"],
             },
             "name": "query_temperture_info",
-            "description": "¸ù¾İÓÃ»§Ìá¹©µÄĞÅÏ¢£¬²éÑ¯µ±ÌìµÄÌìÆøÇé¿ö",
+            "description": "æ ¹æ®ç”¨æˆ·æä¾›çš„ä¿¡æ¯ï¼ŒæŸ¥è¯¢å½“å¤©çš„å¤©æ°”æƒ…å†µ",
             "parameters": {
                 "type": "object",
                 "properties": {
                     "temperature": {
                         "type": "string",
-                        "description": "µ±Ç°ÎÂ¶È",
+                        "description": "å½“å‰æ¸©åº¦",
                     },
                     "wind": {
                         "type": "string",
-                        "description": "µ±Ç°·çÁ¦",
+                        "description": "å½“å‰é£åŠ›",
                     },
                     "rainy": {
                         "type": "string",
-                        "description": "½ñÌìÌìÆøÔ¤±¨£¬ÊÇ·ñ»áÏÂÓê£¿",
+                        "description": "ä»Šå¤©å¤©æ°”é¢„æŠ¥ï¼Œæ˜¯å¦ä¼šä¸‹é›¨ï¼Ÿ",
                     },
                 },
                 "required": ["temperature", "wind", "rainy"],
             },
             "web_search":{
                 "enable" : False,
-                "search_query" : "×¢ÒâÈÕÆÚ£¬±£Ö¤ÊµÊ±ĞÔ¡£"
+                "search_query" : "æ³¨æ„æ—¥æœŸï¼Œä¿è¯å®æ—¶æ€§ã€‚"
             }
         }
     }

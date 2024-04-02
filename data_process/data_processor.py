@@ -17,7 +17,7 @@ from data_process.file_parser import FileParser
 from config.config_parser import EMBEDDING_MODEL
 
 
-# Êı¾İ´¦Àí
+# æ•°æ®å¤„ç†
 class DataProcessor(object):
     def __init__(self, file_path, file_content=""):
         self.file_path = file_path
@@ -30,7 +30,7 @@ class DataProcessor(object):
 
     @staticmethod
     def text_spliter(documents):
-        # ½ÓÏÂÀ´£¬ÎÒÃÇ½«ÎÄµµ²ğ·Ö³É¿é¡£
+        # æ¥ä¸‹æ¥ï¼Œæˆ‘ä»¬å°†æ–‡æ¡£æ‹†åˆ†æˆå—ã€‚
         text_splitter = RecursiveCharacterTextSplitter(chunk_size=250, chunk_overlap=0)
         texts = text_splitter.split_documents(documents)
         return texts
@@ -76,7 +76,7 @@ class DataProcessor(object):
     def milvus_data_insert(datas):
         insert_result = milvus_client.insert(datas)
         milvus_client.flush()
-        # ½«collection¼ÓÔØÖÁÄÚ´æ
+        # å°†collectionåŠ è½½è‡³å†…å­˜
         milvus_client.load()
         logger.info(f"insert data to milvus, {insert_result}")
 

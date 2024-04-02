@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+# @place: Pudong, Shanghai
+# @file: llm_chat_api.py
+# @time: 2023/7/22 15:12
 import json
 import requests
 import warnings
@@ -15,11 +18,11 @@ from utils.logger import logger
 from config.tools import tools
 
 def get_text_embedding(req_text, model_name):
-    if model_name == 'glm-4':
+    if model_name == 'embedding-2':
         from zhipuai import ZhipuAI
         client = ZhipuAI(api_key=ZHIPU_API_KEY) 
         response = client.embeddings.create(
-            model=model_name, #填写需要调用的模型名称
+            model=model_name, #濉啓闇�瑕佽皟鐢ㄧ殑妯″瀷鍚嶇О
             input=req_text
         )
         return json.loads(response.model_dump_json())["data"][0]["embedding"]
@@ -34,15 +37,6 @@ def get_text_embedding(req_text, model_name):
         new_req = requests.request("POST", embedding_api, headers=headers, data=payload)
         return new_req.json()['data'][0]['embedding']
 
-# def get_text_embedding(req_text, model_name):
-#     from zhipuai import ZhipuAI
-
-#     client = ZhipuAI(api_key=ZHIPU_API_KEY) 
-#     response = client.embeddings.create(
-#         model=model_name, #填写需要调用的模型名称
-#         input=req_text
-#     )
-#     return json.loads(response.model_dump_json())["data"][0]["embedding"]
 
 def chat_completion(message, model_name):
     if model_name =="glm-4":
@@ -62,7 +56,7 @@ def chat_completion(message, model_name):
         "max_tokens": 300
         }
         from zhipuai import ZhipuAI
-        client = ZhipuAI(api_key=ZHIPU_API_KEY) # 填写您自己的APIKey
+        client = ZhipuAI(api_key=ZHIPU_API_KEY) # 濉啓鎮ㄨ嚜宸辩殑APIKey
         response = client.chat.completions.create(
             **payload,
             tools=tools
@@ -94,29 +88,3 @@ def chat_completion(message, model_name):
         logger.info(f"model_name: {model_name}, response: {response.text}")
         return response.json()['choices'][0]['message']['content']
 
-# def chat_completion(message, model_name):
-#     payload = {
-#         "model": model_name,
-#         "messages": [
-#             {
-#                 "role": "system",
-#                 "content": SYSTEM_ROLE
-#             },
-#             {
-#                 "role": "user",
-#                 "content": message
-#             }
-#         ],
-#         "temperature": 0.8,
-#         "max_tokens": 300
-#     }
-
-#     from zhipuai import ZhipuAI
-#     client = ZhipuAI(api_key=ZHIPU_API_KEY) # 填写您自己的APIKey
-#     response = client.chat.completions.create(
-#         **payload
-#     )
-#     response = json.loads(response.model_dump_json())
-#     logger.info(f"model_name: {model_name}, token use: {response['usage']['total_tokens']}")
-
-#     return response['choices'][0]['message']['content']

@@ -12,10 +12,10 @@ from pymilvus import (
 )
 from elasticsearch import Elasticsearch
 
-# Á¬½ÓElasticsearch
+# è¿æ¥Elasticsearch
 es_client = Elasticsearch([{'host': 'localhost', 'port': 9200}])
 
-# ´´½¨ĞÂµÄES index
+# åˆ›å»ºæ–°çš„ES index
 mapping = {
     'properties': {
         'source': {
@@ -49,16 +49,16 @@ es_client.indices.create(index='docs', ignore=400)
 result = es_client.indices.put_mapping(index='docs', body=mapping)
 print(result)
 
-# Á¬½Ómilvus
+# è¿æ¥milvus
 # client = Milvus(host='localhost', port='19530')
 connections.connect("default", host="localhost", port="19530")
 
-# Èç¹û¼¯ºÏÒÑ´æÔÚ£¬ÏÈÉ¾³ıËü
+# å¦‚æœé›†åˆå·²å­˜åœ¨ï¼Œå…ˆåˆ é™¤å®ƒ
 # if "docs_qa" in client.list_collections():
 #     client.drop_collection("docs_qa")
-#     print("ÒÑÉ¾³ı¼¯ºÏ:", "docs_qa")
+#     print("å·²åˆ é™¤é›†åˆ:", "docs_qa")
 
-# ´´½¨Ò»¸öcollection
+# åˆ›å»ºä¸€ä¸ªcollection
 fields = [
     FieldSchema(name="pk", dtype=DataType.INT64, is_primary=True, auto_id=False),
     FieldSchema(name="source", dtype=DataType.VARCHAR, max_length=100),
@@ -69,7 +69,7 @@ schema = CollectionSchema(fields, "vector db for docs qa")
 
 docs_milvus = Collection("docs_qa", schema)
 
-# ÔÚembeddings×Ö¶Î´´½¨Ë÷Òı
+# åœ¨embeddingså­—æ®µåˆ›å»ºç´¢å¼•
 index = {
     "index_type": "IVF_FLAT",
     "metric_type": "IP",
