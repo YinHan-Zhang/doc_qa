@@ -19,8 +19,8 @@
 5. 插入数据：`python3 data_processor.py`
 6. 问答测试: `python3 qa/doc_qa.py`
 7. 启动web服务: `python3 server.py`
-8. 可视化web页面启动: server_gradio.py`
-
+8. 可视化web页面启动: `server_gradio.py`
+9. `pip install gradio==3.36.1`
 ### HTTP请求
 
 1. 文档问答接口
