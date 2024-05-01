@@ -10,4 +10,4 @@ es_client = Elasticsearch([{'host': 'localhost', 'port': 9200}])
 
 # 连接Milvus
 connections.connect("default", host="localhost", port="19530")
-milvus_client = Collection("docs_qa")
+milvus_client = Collection("travel_docs_qa")
