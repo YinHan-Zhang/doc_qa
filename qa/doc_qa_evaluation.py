@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-# @place: Pudong, Shanghai
-# @file: doc_qa_evaluation.py
-# @time: 2023/12/20 13:12
+
 import os
+import sys
+sys.path.append("/Users/zhangyinhan1/Desktop/code/rag_project/llm_doc_qa/")
 from langchain.evaluation import load_evaluator, EvaluatorType, Criteria
 from langchain.chat_models import ChatOpenAI
 

@@ -58,8 +58,8 @@ def document_qa(model_list, is_show_reference, question, image_file):
             output.append([model_name, question, reply, contexts, sources, metric])
             contexts_output.append(contexts)
         else:
-            output.append([model_name, question, reply, "", "", ""])
-            contexts_output.append("")
+            output.append([model_name, question, reply, contexts, sources, ""])
+            contexts_output.append(contexts)
     # 更新对话历史记录
     for model_name, reply in zip(model_list, output):
         dialogue_history.append(("User: ", question))

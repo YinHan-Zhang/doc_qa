@@ -8,14 +8,14 @@ import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 import sys
-sys.path.append("/Users/zhangyinhan1/Desktop/code/rag_project/llm_4_doc_qa")
+sys.path.append("/Users/zhangyinhan1/Desktop/code/rag_project/llm_doc_qa")
 from utils.db_client import milvus_client
 from utils.db_client import es_client
 from common.llm_chat_api import get_text_embedding
 from utils.logger import logger
 from data_process.file_parser import FileParser
 from config.config_parser import EMBEDDING_MODEL
-
+from .flag_models import FlagModel
 
 # 数据处理
 class DataProcessor(object):
@@ -72,6 +72,7 @@ class DataProcessor(object):
         else:
             logger.info("no insert data!")
 
+
     @staticmethod
     def milvus_data_insert(datas):
         insert_result = milvus_client.insert(datas)
@@ -87,7 +88,39 @@ class DataProcessor(object):
         # print(datas)
         self.es_data_insert(datas)
         self.milvus_data_insert(datas)
+    
+    def travel_data_insert(self):
+        import json
+        with open(self.file_path, "r") as f:
+            texts = json.load(f)
+        datas = self.travel_text_embedding(texts)
+        # print(datas[2])
+        self.es_data_insert(datas)
+        self.milvus_data_insert(datas)
+
+    @staticmethod
+    def travel_text_embedding(texts):
+        model = FlagModel("/Users/zhangyinhan1/Desktop/code/worksace/bge-large-zh-v1.5", query_instruction_for_retrieval="为这个句子生成表示以用于检索相关文章：")
+        _ids = []
+        sources = []
+        contents = []
+        embeddings = []
+        for i, text in enumerate(texts):
+            if i == 100 :
+                break
+            source = "files/travel_data/travel_data.json"
+            content = text["content"]
+            embedding = model.encode(text["title"]) if len(content) > 128 else model.encode(content)
+            _ids.append(i + 1)
+            sources.append(source)
+            contents.append(content)
+            embeddings.append(embedding)
+            logger.info(f'source: {source}, got text {i} embedding...')
+        datas = [_ids, sources, contents, embeddings]
+        return datas
+        
 
 
 if __name__ == '__main__':
-    DataProcessor(file_path='../files/demo.txt').data_insert()
+    # DataProcessor(file_path='/Users/zhangyinhan1/Desktop/code/rag_project/llm_doc_qa/files/other_data/demo.txt').data_insert()
+    DataProcessor(file_path='/Users/zhangyinhan1/Desktop/code/rag_project/llm_doc_qa/files/travel_data/travel_data.json').travel_data_insert()
