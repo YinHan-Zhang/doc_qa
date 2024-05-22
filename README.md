@@ -1,9 +1,10 @@
-# RAG学习项目
-本项目是基于llm的RAG文档问答的探索学习，使用langchain做文本的读取切分，embedding向量存储到milvus数据库，ES 做检索召回，使用Rerank模型(cohere/bge-rerank)作为精排，再使用LLM做文档问答(glm4支持agent和tools的调用)。
+# 本科毕设项目 - 基于知识驱动的文旅问答系统
+本项目是基于llm的RAG文文旅问答系统项目，使用langchain做文本的读取切分，embedding向量存储到milvus数据库，ES 做检索召回，使用Rerank模型(cohere/bge-rerank)作为精排，再使用LLM做文档问答(glm4支持agent和tools的调用)。
 
-- 现在全部是调用api，方便部署体验
-- 本地LLM问答（chatGLM）
-- 由于个人显卡计算资源很少，现在只跑了Qwen-1.8b（后续待更新）
+- 支持api调用，方便部署体验
+- 支持本地部署
+- 支持Flask，可扩展二次开发应用
+- 支持Gradio，一键体验模型效果
 
 项目的整体架构如图：
 
